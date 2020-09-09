@@ -32,4 +32,4 @@ Docker上の各言語の開発環境。
 
 `# コンテナの起動(2回目から)`
 
-`docker-compose up --build`
+`docker-compose up`
