@@ -1,7 +1,7 @@
 version: '3'
 services:
   notablog:
-    image: base_env_nodejs:1.0
+    image: base_nodejs:1.0
     build: ./settings/notablog/
     container_name: 'con_notablog'
     working_dir: '/root/notablog-starter'

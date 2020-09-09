@@ -1,5 +1,5 @@
 # ベースイメージ名:タグ名
-FROM base_env_nodejs:1.0
+FROM base_nodejs:1.0
 
 #notablogのインストール
 RUN npm i -g notablog \
