@@ -39,10 +39,36 @@ RUN apt-get update \
     && echo "# 日本語入力に対応" >> ~/.zshrc \
     && echo "export LANG=ja_JP.UTF-8" >> ~/.zshrc
 
+# zshの設定
+RUN { \
+    echo "# set color"; \
+    echo "autoload -U colors"; \
+    echo "colors"; \
+    echo "# user prompt"; \
+    echo "## 左側のプロンプト" \
+    echo "PROMPT='[%F{yellow}%T%f %F{cyan}%U%m%u%f]# '"; \
+    echo "## 右側のプロンプト"; \
+    echo "RPROMPT='[%F{magenta}%n%f:%F{green}%(5~,%-2~/.../%2~,%d)%f]'"; \
+    echo "# 補完機能を有効にする"; \
+    echo "autoload -U compinit"; \
+    echo "compinit"; \
+    echo "# メニュー補完絞り込み"; \
+    echo "zstyle ':completion:*:default' menu select interactive"; \
+    echo "setopt menu_complete"; \
+    echo "# セパレータを設定する"; \
+    echo "zstyle ':completion:*' list-separator '-->'"; \
+    echo "zstyle ':completion:*:manuals' separate-sections true"; \
+    echo "#入力ミスに対応する"; \
+    echo "setopt correct"; \
+    echo "#直前のコマンドと同じなら、履歴に残さない"; \
+    echo "setopt HIST_IGNORE_DUPS"; \
+    } >> ~/.zshrc
+
 # pipをアップグレードし必要なパッケージをインストール
 RUN pip install --upgrade pip && \
     pip install janome && \
-    pip install transformers
+    pip install transformers && \
+    Pip install jsonlines
 
 # MeCabのインストール
 RUN git clone https://github.com/taku910/mecab && \
